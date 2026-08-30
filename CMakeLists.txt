@@ -1,0 +1,18 @@
+idf_component_register(
+    SRCS 
+        "src/lcd_lvgl.c"
+        "src/lcd_lvgl_ui.c"
+        "src/lcd_lvgl_ui_cfg.c"
+        "src/lcd_lvgl_cam.c"
+    INCLUDE_DIRS 
+        "include"
+    PRIV_INCLUDE_DIRS
+        "."
+    REQUIRES
+        driver
+        esp_lcd
+        esp32-camera
+        esp_lvgl_port
+        lvgl
+        camera_manager
+)

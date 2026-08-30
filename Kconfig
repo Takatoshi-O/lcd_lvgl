@@ -1,0 +1,100 @@
+menu "LCD LVGL Configuration"
+
+    choice LCD_BOARD
+
+        prompt "LCD Board"
+        default LCD_BOARD_XIAO_ESP32_S3_SENSE
+
+        config LCD_BOARD_XIAO_ESP32_S3_SENSE
+            bool "XIAO ESP32-S3 Sense"
+
+        config LCD_BOARD_FREENOVE_ESP32_S3_WROOM1
+            bool "Freenove ESP32-S3 WROOM1"
+
+    endchoice
+
+    menu "LCD Configuration"
+
+        config LCD_WIDTH
+            int "LCD Width"
+            default 128
+            range 1 4096
+
+        config LCD_HEIGHT
+            int "LCD Height"
+            default 128
+            range 1 4096
+
+        config LCD_SPI_CLOCK_HZ
+            int "LCD SPI Clock (Hz)"
+            default 20000000
+            range 1000000 80000000
+
+        config LCD_INVERT_COLOR
+            bool "Invert LCD Color"
+            default n
+
+        config LCD_BL_ACTIVE_HIGH
+            bool "Backlight active high"
+            default y
+
+        menu "LCD Rotation"
+
+            config LCD_MIRROR_X
+                bool "Mirror X"
+                default n
+
+            config LCD_MIRROR_Y
+                bool "Mirror Y"
+                default n
+
+            config LCD_SWAP_XY
+                bool "Swap X/Y"
+                default n
+
+        endmenu
+
+        choice LCD_COLOR_ORDER
+
+            prompt "LCD Color Order"
+            default LCD_COLOR_ORDER_BGR
+
+            config LCD_COLOR_ORDER_RGB
+                bool "RGB"
+
+            config LCD_COLOR_ORDER_BGR
+                bool "BGR"
+
+        endchoice
+
+        menu "LCD Offset"
+
+            config LCD_X_GAP
+                int "X Offset"
+                default 2
+
+            config LCD_Y_GAP
+                int "Y Offset"
+                default 1
+
+        endmenu
+
+        choice LCD_V_ALIGN
+
+            prompt "Camera Image Vertical Alignment"
+            default LCD_V_ALIGN_CENTER
+
+            config LCD_V_ALIGN_TOP
+                bool "Top"
+
+            config LCD_V_ALIGN_CENTER
+                bool "Center"
+
+            config LCD_V_ALIGN_BOTTOM
+                bool "Bottom"
+
+        endchoice
+
+    endmenu
+
+endmenu
