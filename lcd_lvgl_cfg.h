@@ -1,4 +1,5 @@
 #ifndef LCD_LVGL_CFG_H
+/** @brief LCD設定ヘッダーのインクルードガードです。 */
 #define LCD_LVGL_CFG_H
 
 /**
@@ -12,10 +13,12 @@
 
 #if defined(CONFIG_LCD_BOARD_XIAO_ESP32_S3_SENSE)
 
+/** @brief KconfigでXIAO ESP32-S3 Senseが選択されたことを表す内部値です。 */
     #define LCD_BOARD_SELECTED 1
 
 #elif defined(CONFIG_LCD_BOARD_FREENOVE_ESP32_S3_WROOM1)
 
+/** @brief KconfigでFreenove ESP32-S3 WROOM1が選択されたことを表す内部値です。 */
     #define LCD_BOARD_SELECTED 2
 
 #else
@@ -31,6 +34,7 @@
 
 #if LCD_BOARD_SELECTED == 1
 
+/** @brief 選択されたXIAO ESP32-S3 Senseの表示名です。 */
     #define LCD_BOARD_NAME "XIAO ESP32-S3 Sense"
 
     #define LCD_PIN_MOSI     9
@@ -48,6 +52,7 @@
 
 #elif LCD_BOARD_SELECTED == 2
 
+/** @brief 選択されたFreenove ESP32-S3 WROOM1の表示名です。 */
     #define LCD_BOARD_NAME "Freenove ESP32-S3 WROOM1"
 
     #define LCD_PIN_MOSI     41
@@ -65,24 +70,28 @@
 #endif
 
 #ifdef CONFIG_LCD_INVERT_COLOR
+/** @brief Kconfigの色反転が有効であることを表します。 */
 #define LCD_INVERT_COLOR true
 #else
 #define LCD_INVERT_COLOR false
 #endif
 
 #ifdef CONFIG_LCD_SWAP_XY
+/** @brief KconfigのX/Y入れ替えが有効であることを表します。 */
 #define LCD_SWAP_XY true
 #else
 #define LCD_SWAP_XY false
 #endif
 
 #ifdef CONFIG_LCD_MIRROR_X
+/** @brief KconfigのX方向ミラーが有効であることを表します。 */
 #define LCD_MIRROR_X true
 #else
 #define LCD_MIRROR_X false
 #endif
 
 #ifdef CONFIG_LCD_MIRROR_Y
+/** @brief KconfigのY方向ミラーが有効であることを表します。 */
 #define LCD_MIRROR_Y true
 #else
 #define LCD_MIRROR_Y false

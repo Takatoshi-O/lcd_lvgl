@@ -1,4 +1,8 @@
 #pragma once
+/**
+ * @file lcd_lvgl_ui_cfg.h
+ * @brief 各UI画面で使用するテキスト項目のIDを定義し、画面別のテキスト設定を取得するAPIを提供します。
+ */
 
 #include <stddef.h>
 
@@ -9,6 +13,7 @@
  * INFO UI
  * ========================================================= */
 
+/** @brief INFO画面で参照するテキスト項目IDです。 */
 typedef enum {
     LCD_UI_INFO_TEXT_TITLE,
 
@@ -20,6 +25,7 @@ typedef enum {
  * CALIB COLOR UI
  * ========================================================= */
 
+/** @brief カメラ色キャリブレーション画面で使用するテキスト項目IDです。 */
 typedef enum {
     LCD_UI_CAMERA_CALIB_COLOR_TEXT_TITLE,
 
@@ -42,6 +48,7 @@ typedef enum {
  * CALIB POSITION UI
  * ========================================================= */
 
+/** @brief カメラ位置キャリブレーション画面で使用するテキスト項目IDです。 */
 typedef enum {
     LCD_UI_CAMERA_CALIB_POS_TEXT_TITLE,
 
@@ -66,6 +73,7 @@ typedef enum {
  * CALIB COLOR UI
  * ========================================================= */
 
+/** @brief カラーセンサー色キャリブレーション画面で使用するテキスト項目IDです。 */
 typedef enum {
     LCD_UI_COLOR_CALIB_COLOR_TEXT_TITLE,
 
@@ -84,6 +92,7 @@ typedef enum {
  * CALIB RGBC UI
  * ========================================================= */
 
+/** @brief カラーセンサーRGBC表示画面で使用するテキスト項目IDです。 */
 typedef enum {
     LCD_UI_COLOR_RGBC_TEXT_R_LAVEL,
     LCD_UI_COLOR_RGBC_TEXT_R_VALUE,
@@ -104,4 +113,11 @@ typedef enum {
  * Text Config取得
  * ========================================================= */
 
+/**
+ * @brief 指定UIの静的テキスト設定配列を取得します。
+ *
+ * @param ui 設定を取得するUIです。
+ * @param count テキスト項目数の格納先です。
+ * @return テキスト設定配列への読み取り専用ポインタです。該当UIがない場合の扱いは実装に従います。
+ */
 const lcd_ui_text_config_t *lcd_ui_get_text_config(lcd_ui_t ui, size_t *count);
