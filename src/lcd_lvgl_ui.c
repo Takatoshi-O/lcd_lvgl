@@ -8,6 +8,7 @@
 #include "lcd_lvgl.h"
 #include "lcd_lvgl_cfg.h"
 #include "lcd_lvgl_ui_cfg.h"
+#include "lcd_lvgl_cam.h"
 
 static const char *TAG = "cam_lcd_ui";
 
@@ -217,12 +218,6 @@ esp_err_t lcd_ui_display(lcd_ui_t ui, bool is_display)
     return ESP_OK;
 }
 
-static void camera_to_lcd(int cam_x, int cam_y, int *lcd_x, int *lcd_y)
-{
-    *lcd_x = s_off_x + (cam_x * s_cam_w) / s_cam_src_w;
-    *lcd_y = s_off_y + (cam_y * s_cam_h) / s_cam_src_h;
-}
-
 esp_err_t lcd_lvgl_set_rect(int index, int cam_x, int cam_y, display_color_t color)
 {
     if (index >= MAX_RECT_COUNT) return ESP_ERR_INVALID_ARG;
@@ -242,7 +237,11 @@ esp_err_t lcd_lvgl_set_rect(int index, int cam_x, int cam_y, display_color_t col
     int lcd_y;
 
     /* 左上 */
-    camera_to_lcd(cam_x, cam_y, &lcd_x, &lcd_y);
+    ESP_RETURN_ON_ERROR(
+        lcd_lvgl_cam_camera_to_lcd( cam_x, cam_y, &lcd_x, &lcd_y),
+        TAG,
+        "camera coordinate conversion failed"
+    );
 
     lcd_x = lcd_x - (SQUARE_WIDTH / 2) - 1;
     lcd_y = lcd_y - (SQUARE_WIDTH / 2) - 1;
@@ -259,6 +258,34 @@ esp_err_t lcd_lvgl_set_rect(int index, int cam_x, int cam_y, display_color_t col
     lvgl_port_unlock();
 
     return ESP_OK;
+}
+
+void lcd_lvgl_display_rect()
+{
+    if (!lvgl_port_lock(0)) return;
+
+    for (int i = 0; i < MAX_RECT_COUNT; i++)
+    {
+        lv_obj_remove_flag(s_rect[i], LV_OBJ_FLAG_HIDDEN);
+    }
+    
+    lvgl_port_unlock();
+
+    return;
+}
+
+void lcd_lvgl_erase_rect()
+{
+    if (!lvgl_port_lock(0)) return;
+
+    for (int i = 0; i < MAX_RECT_COUNT; i++)
+    {
+        lv_obj_add_flag(s_rect[i], LV_OBJ_FLAG_HIDDEN);
+    }
+    
+    lvgl_port_unlock();
+
+    return;
 }
 
 void lcd_ui_text_set(lcd_ui_t ui, uint8_t index, const char *text, display_color_t color)

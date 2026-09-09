@@ -296,8 +296,8 @@ esp_err_t lcd_lvgl_init(void)
          * LCDをLVGL側でミラーする場合、
          * カメラバッファ側は逆方向に補正
          */
-        .mirror_x = !LCD_MIRROR_X,
-        .mirror_y = !LCD_MIRROR_Y,
+        .mirror_x = CAM_MIRROR_X,
+        .mirror_y = CAM_MIRROR_Y,
     };
 
     ESP_RETURN_ON_ERROR(lcd_lvgl_cam_init(&camera_config), TAG, "camera display init failed");

@@ -54,6 +54,22 @@ menu "LCD LVGL Configuration"
 
         endmenu
 
+        menu "CAM Rotation"
+
+            config CAM_MIRROR_X
+                bool "Mirror X"
+                default n
+
+            config CAM_MIRROR_Y
+                bool "Mirror Y"
+                default n
+
+            config CAM_SWAP_XY
+                bool "Swap X/Y"
+                default n
+
+        endmenu
+
         choice LCD_COLOR_ORDER
 
             prompt "LCD Color Order"

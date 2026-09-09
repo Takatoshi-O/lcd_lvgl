@@ -85,6 +85,16 @@ esp_err_t lcd_ui_display(lcd_ui_t ui, bool is_display);
 esp_err_t lcd_lvgl_set_rect(int index, int cam_x, int cam_y, display_color_t color);
 
 /**
+ * @brief カメラ座標の矩形表示位置を全て表示します。
+ */
+void lcd_lvgl_display_rect();
+
+/**
+ * @brief カメラ座標の矩形表示位置を全て消します。
+ */
+void lcd_lvgl_erase_rect();
+
+/**
  * @brief 指定UIのテキスト内容と色を変更します。
  *
  * @param ui 対象UIです。

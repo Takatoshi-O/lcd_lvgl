@@ -38,3 +38,5 @@ typedef struct {
  * @return 初期化結果です。
  */
 esp_err_t lcd_lvgl_cam_init(const lcd_lvgl_camera_config_t *config);
+
+esp_err_t lcd_lvgl_cam_camera_to_lcd(int cam_x, int cam_y, int *lcd_x, int *lcd_y);

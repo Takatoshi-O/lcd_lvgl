@@ -97,4 +97,25 @@
 #define LCD_MIRROR_Y false
 #endif
 
+#ifdef CONFIG_CAM_SWAP_XY
+/** @brief KconfigのX/Y入れ替えが有効であることを表します。 */
+#define CAM_SWAP_XY true
+#else
+#define CAM_SWAP_XY false
+#endif
+
+#ifdef CONFIG_CAM_MIRROR_X
+/** @brief KconfigのX方向ミラーが有効であることを表します。 */
+#define CAM_MIRROR_X true
+#else
+#define CAM_MIRROR_X false
+#endif
+
+#ifdef CONFIG_CAM_MIRROR_Y
+/** @brief KconfigのY方向ミラーが有効であることを表します。 */
+#define CAM_MIRROR_Y true
+#else
+#define CAM_MIRROR_Y false
+#endif
+
 #endif /* LCD_LVGL_CFG_H */

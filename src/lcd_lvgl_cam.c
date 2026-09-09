@@ -78,7 +78,7 @@ static void convert_yuv422_letterboxed(const uint8_t *src, int src_w, int src_h,
 
     int sx,sy;
     for (int dy = 0; dy < draw_h; dy++) {
-        if (!s_mirror_y) sy = (dy * src_h) / draw_h;
+        if (s_mirror_y) sy = (dy * src_h) / draw_h;
         else sy = ((draw_h - 1 - dy) * src_h) / draw_h;
         
         const uint8_t *row = src + (size_t)sy * src_w * 2; /* 1px=2byte(YUV422) */
@@ -180,6 +180,36 @@ esp_err_t lcd_lvgl_cam_init(const lcd_lvgl_camera_config_t *config)
         camera_register_frame_cb(on_camera_frame, NULL),
         TAG, "camera_register_frame_cb failed"
     );
+
+    return ESP_OK;
+}
+
+esp_err_t lcd_lvgl_cam_camera_to_lcd(int cam_x, int cam_y, int *lcd_x, int *lcd_y)
+{
+    if (lcd_x == NULL || lcd_y == NULL) {
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    if (cam_x < 0 || cam_x >= s_cam_src_w ||
+        cam_y < 0 || cam_y >= s_cam_src_h) {
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    int x = cam_x;
+    int y = cam_y;
+
+    /*
+     * convert_yuv422_letterboxed() と
+     * 同じミラー規則を適用する
+     */
+
+    if (!s_mirror_x) x = s_cam_src_w - 1 - x;
+
+    if (!s_mirror_y) y = s_cam_src_h - 1 - y;
+
+    *lcd_x = s_off_x + (x * s_cam_w) / s_cam_src_w;
+
+    *lcd_y = s_off_y + (y * s_cam_h) / s_cam_src_h;
 
     return ESP_OK;
 }
