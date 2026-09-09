@@ -64,10 +64,6 @@ menu "LCD LVGL Configuration"
                 bool "Mirror Y"
                 default n
 
-            config CAM_SWAP_XY
-                bool "Swap X/Y"
-                default n
-
         endmenu
 
         choice LCD_COLOR_ORDER

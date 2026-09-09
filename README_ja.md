@@ -28,7 +28,7 @@
 
 | 項目 | デフォルト | 説明 |
 |---|---:|---|
-| LCD board | XIAO ESP32-S3 Sense | ボードごとのGPIO選択 |
+| `LCD board` | XIAO ESP32-S3 Sense | ボードごとのGPIO選択 |
 | `LCD_WIDTH` | 128 | LCD横幅 |
 | `LCD_HEIGHT` | 128 | LCD高さ |
 | `LCD_SPI_CLOCK_HZ` | 20000000 | SPIクロック(Hz) |
@@ -37,7 +37,9 @@
 | `LCD_MIRROR_X` | off | LVGL X方向ミラー |
 | `LCD_MIRROR_Y` | off | LVGL Y方向ミラー |
 | `LCD_SWAP_XY` | off | LVGLのX/Y入れ替え |
-| LCD color order | BGR | RGB/BGR選択 |
+| `CAM_MIRROR_X` | off | カメラ画像をX方向に反転 |
+| `CAM_MIRROR_Y` | off | カメラ画像をY方向に反転 |
+| `LCD color order` | BGR | RGB/BGR選択 |
 | `LCD_X_GAP` | 2 | LCD X方向オフセット |
 | `LCD_Y_GAP` | 1 | LCD Y方向オフセット |
 | Vertical alignment | Center | カメラ映像の縦位置 |

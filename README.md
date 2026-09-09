@@ -28,7 +28,7 @@ Select **Component config -> LCD LVGL Configuration** in `idf.py menuconfig`.
 
 | Option | Default | Description |
 |---|---:|---|
-| LCD board | XIAO ESP32-S3 Sense | Board-specific GPIO selection |
+| `LCD board` | XIAO ESP32-S3 Sense | Board-specific GPIO selection |
 | `LCD_WIDTH` | 128 | LCD width |
 | `LCD_HEIGHT` | 128 | LCD height |
 | `LCD_SPI_CLOCK_HZ` | 20000000 | SPI clock in Hz |
@@ -37,7 +37,9 @@ Select **Component config -> LCD LVGL Configuration** in `idf.py menuconfig`.
 | `LCD_MIRROR_X` | off | LVGL X-axis mirroring |
 | `LCD_MIRROR_Y` | off | LVGL Y-axis mirroring |
 | `LCD_SWAP_XY` | off | LVGL X/Y swap |
-| LCD color order | BGR | RGB/BGR selection |
+| `CAM_MIRROR_X` | off | Camera X-axis mirroring |
+| `CAM_MIRROR_Y` | off | Camera Y-axis mirroring |
+| `LCD color order` | BGR | RGB/BGR selection |
 | `LCD_X_GAP` | 2 | LCD X offset/gap |
 | `LCD_Y_GAP` | 1 | LCD Y offset/gap |
 | Vertical alignment | Center | Camera image vertical alignment |
